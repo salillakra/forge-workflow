@@ -1,0 +1,129 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Cafe design tokens — cozy, warm, minimal */
+  --background: 30 33% 97%;      /* #F9F7F5 */
+  --foreground: 24 35% 18%;      /* #3E2B1E */
+  --card: 30 50% 99%;
+  --card-foreground: 24 35% 18%;
+  --popover: 30 50% 99%;
+  --popover-foreground: 24 35% 18%;
+  --primary: 26 30% 28%;         /* #5D4432 */
+  --primary-foreground: 30 33% 97%;
+  --secondary: 30 18% 89%;       /* #E9E3DD */
+  --secondary-foreground: 24 35% 18%;
+  --muted: 30 18% 90%;
+  --muted-foreground: 26 14% 48%;
+  --accent: 30 18% 89%;
+  --accent-foreground: 24 35% 18%;
+  --destructive: 0 72% 51%;      /* #DC2626 */
+  --destructive-foreground: 0 0% 100%;
+  --border: 27 21% 79%;          /* #D4C8BE */
+  --input: 27 21% 79%;
+  --ring: 26 30% 28%;
+  --radius: 0.5rem;
+
+  /* Status colours */
+  --status-success: 142 76% 36%; /* #16A34A */
+  --status-failed: 0 72% 51%;    /* #DC2626 */
+  --status-running: 38 92% 44%;  /* #D97706 */
+  --status-queued: 26 14% 48%;
+  --status-cancelled: 26 14% 38%;
+
+  /* Sidebar */
+  --sidebar: 30 33% 97%;
+  --sidebar-foreground: 24 35% 18%;
+  --sidebar-primary: 26 30% 28%;
+  --sidebar-primary-foreground: 30 33% 97%;
+  --sidebar-accent: 30 18% 89%;
+  --sidebar-accent-foreground: 24 35% 18%;
+  --sidebar-border: 27 21% 79%;
+  --sidebar-ring: 26 30% 28%;
+
+  /* Chart */
+  --chart-1: 26 30% 28%;
+  --chart-2: 38 92% 44%;
+  --chart-3: 142 76% 36%;
+  --chart-4: 30 18% 60%;
+  --chart-5: 0 72% 51%;
+}
+
+* {
+  border-color: hsl(var(--border));
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: light;
+}
+
+body {
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: var(--font-inter), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: hsl(var(--background)); }
+::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: hsl(var(--muted-foreground)); }
+
+/* Glow utilities */
+.glow-primary { box-shadow: 0 0 24px hsl(var(--primary) / 0.25); }
+.glow-success  { box-shadow: 0 0 16px hsl(var(--status-success) / 0.3); }
+
+/* Glass effect */
+.glass {
+  background: hsl(var(--card) / 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid hsl(var(--border) / 0.5);
+}
+
+/* Animate DAG node selection ring */
+.node-selected {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+  animation: pulse-ring 2s ease-in-out infinite;
+}
+
+@keyframes pulse-ring {
+  0%, 100% { outline-color: hsl(var(--primary) / 0.8); }
+  50%       { outline-color: hsl(var(--primary) / 0.3); }
+}
+
+/* Log panel font */
+.log-panel { font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace; }
+
+/* Status badge glow */
+.badge-running  { box-shadow: 0 0 8px hsl(var(--status-running) / 0.5); }
+.badge-success  { box-shadow: 0 0 8px hsl(var(--status-success) / 0.4); }
+.badge-failed   { box-shadow: 0 0 8px hsl(var(--status-failed)  / 0.4); }
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, hsl(var(--primary)), hsl(195 95% 65%));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Shimmer animation for skeleton */
+@keyframes shimmer {
+  from { background-position: -200% center; }
+  to   { background-position:  200% center; }
+}
+.shimmer {
+  background: linear-gradient(90deg,
+    hsl(var(--muted)) 25%,
+    hsl(var(--secondary)) 37%,
+    hsl(var(--muted)) 63%
+  );
+  background-size: 200% auto;
+  animation: shimmer 1.5s linear infinite;
+}
