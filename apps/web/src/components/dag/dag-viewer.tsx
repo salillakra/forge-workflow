@@ -369,7 +369,7 @@ export function DagViewer({
           nodesDraggable={!readOnly}
           nodesConnectable={!readOnly}
           fitView
-          fitViewOptions={{ padding: 0.25 }}
+          fitViewOptions={{ padding: "25%" }}
           proOptions={{ hideAttribution: true }}
           className="bg-[hsl(var(--background))]"
           defaultEdgeOptions={{
